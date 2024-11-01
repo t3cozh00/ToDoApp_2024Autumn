@@ -1,0 +1,68 @@
+#container {
+  padding: 10px;
+  background-color: #e8eaed;
+  border-radius: 5px;
+}
+
+.userEmai {
+  display: flex;
+  justify-content: flex-end;
+  padding: 20px;
+  font-size: 10px;
+  font-weight: 300;
+}
+
+.taskWrapper {
+  padding-top: 30px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.sectionTitle {
+  font-size: 40px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.items {
+  margin-top: 30px;
+}
+
+.item {
+  background-color: #fff;
+  padding: 15px;
+  border-radius: 5px;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.itemLeft {
+  display: flex;
+  align-items: center;
+}
+
+.itemText {
+  max-width: 80%;
+  margin-left: 10px;
+}
+
+.square {
+  background: none;
+  border: none;
+  width: 24;
+  height: 24;
+  color: #55bcf6;
+  transition: color 0.3s ease;
+  border-radius: 5px;
+  margin-left: 10px;
+}
+
+.delete-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #55bcf6;
+  transition: color 0.3s ease;
+  margin-left: auto;
+}
