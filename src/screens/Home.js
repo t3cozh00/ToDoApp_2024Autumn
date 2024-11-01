@@ -1,5 +1,6 @@
 import "./Home.css";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Row from "../components/Row";
 import { useUser } from "../context/useUser";
 import { generateUniqueIdentifier } from "../utils/userUrl.js";
@@ -8,6 +9,7 @@ const url = "http://localhost:3001";
 
 function Home() {
   const { user } = useUser();
+  const navigate = useNavigate();
   const [task, setTask] = useState("");
   const [tasks, setTasks] = useState([]);
   const [uniqueIdentifier, setUniqueIdentifier] = useState("");
@@ -52,8 +54,8 @@ function Home() {
     axios
       .post(`${url}/create`, { description: task }, headers)
       .then((response) => {
-        setTasks((prveTask) => [
-          ...prveTask,
+        setTasks((prevTask) => [
+          ...prevTask,
           { id: response.data.id, description: task },
         ]);
         setTask("");
@@ -69,19 +71,32 @@ function Home() {
 
     axios
       .delete(`${url}/delete/${id}`, headers)
-      .then((response) => {
-        setTask((prveTask) => prveTask.filter((item) => item.id !== id));
+      .then(() => {
+        setTasks((prevTask) => prevTask.filter((item) => item.id !== id));
+        //setTasks vs. setTask: setTasks should be used for updating the state of the tasks array. Using setTask instead mistakenly tries to set a single task rather than filtering the list, leading to the error.
       })
       .catch((error) => {
         alert(error.response.data.error ? error.response.data.error : error);
       });
   };
 
+  const handleSignOut = () => {
+    localStorage.removeItem("uniqueIdentifier");
+    sessionStorage.removeItem("user");
+    navigate("/signin");
+  };
+
   return (
     <div id="container">
-      <div className="userEmai">
+      <div className="userPage">
         <div>Welcome, {user.email}</div>
+        <div>
+          <button className="userPageButton" onClick={handleSignOut}>
+            Sign out
+          </button>
+        </div>
       </div>
+
       <div className="taskWrapper">
         <div className="sectionTitle">Your Todos</div>
         <form>

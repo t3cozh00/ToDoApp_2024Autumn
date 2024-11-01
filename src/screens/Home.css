@@ -4,12 +4,35 @@
   border-radius: 5px;
 }
 
-.userEmai {
+.userPage {
   display: flex;
   justify-content: flex-end;
+  align-items: center;
+  gap: 10px;
   padding: 20px;
   font-size: 10px;
-  font-weight: 300;
+  font-weight: 400;
+  color: #333;
+}
+
+.userPage .userPageButton {
+  background: #f0f0f0;
+  border: 1px solid #ddd;
+  cursor: pointer;
+  font-size: 10px;
+  font-weight: 500;
+  border-radius: 5px;
+  padding: 5px 8px;
+  transition: background-color 0.3s ease, box-shadow 0.2s ease;
+}
+
+.userPage .userPageButton:hover {
+  background-color: #e0e0e0;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.userPage .userPageButton:active {
+  background-color: #d0d0d0;
 }
 
 .taskWrapper {
