@@ -1,4 +1,5 @@
 import { useState } from "react";
+
 import { UserContext } from "./UserContext";
 import axios from "axios";
 
@@ -19,13 +20,15 @@ export default function UserProvider({ children }) {
       const response = await axios.post(`${url}/user/register`, json, headers);
       setUser(response.data);
       sessionStorage.setItem("user", JSON.stringify(response.data));
-      const userId = response.data.id;
-
-      await axios.post(
-        `${url}/create`,
-        { description: "Welcome to your Todo list!", userId },
-        headers
-      );
+      //const userId = response.data.id;
+      //const token = response.data.token;
+      // await axios.post(
+      //   `${url}/create`,
+      //   { description: "Welcome to your Todo list!", userId },
+      //   {
+      //     headers: { Authorization: token },
+      //   }
+      // );
     } catch (error) {
       throw error;
     }

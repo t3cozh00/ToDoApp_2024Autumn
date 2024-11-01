@@ -32,7 +32,6 @@ export default function Authentication({ authenticationMode }) {
       alert(message);
     }
   };
-
   return (
     <div id="container">
       <h3>

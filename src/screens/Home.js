@@ -27,7 +27,6 @@ function Home() {
     }
   }, [user]);
 
-  // to check if the user is authenticated
   useEffect(() => {
     if (user && user.token && uniqueIdentifier) {
       // fetch only if the identifier matches
@@ -84,7 +83,7 @@ function Home() {
         <div>Welcome, {user.email}</div>
       </div>
       <div className="taskWrapper">
-        <div className="sectionTitle">Todos</div>
+        <div className="sectionTitle">Your Todos</div>
         <form>
           <input
             placeholder="Add new task"
