@@ -6,6 +6,7 @@ import Authentication, { AuthenticationMode } from "./screens/Authentication";
 import ErrorPage from "./screens/ErrorPage";
 import UserProvider from "./context/UserProvider";
 import ProtectedRoute from "./components/ProtectedRoute";
+
 import "./index.css";
 //import reportWebVitals from "./reportWebVitals";
 

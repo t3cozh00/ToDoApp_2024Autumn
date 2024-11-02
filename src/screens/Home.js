@@ -112,11 +112,11 @@ function Home() {
             }}
           />
         </form>
-        <ul className="items">
+        <div className="items">
           {tasks.map((item) => (
             <Row key={item.id} item={item} deleteTask={deleteTask} />
           ))}
-        </ul>
+        </div>
       </div>
     </div>
   );
