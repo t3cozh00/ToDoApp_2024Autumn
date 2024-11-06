@@ -16,7 +16,11 @@ const createUserObject = (id, email, token = undefined) => {
 
 const postRegistration = async (req, res, next) => {
   try {
-    console.log("Registration request received:", req.body);
+    console.log(
+      "Registration request received:",
+      req.body,
+      "in userController.js"
+    );
     if (!req.body.email || !req.body.email.length === 0) {
       throw new ApiError("Invalid email for user", 400);
     }
@@ -26,11 +30,11 @@ const postRegistration = async (req, res, next) => {
     // hash the password and insert the user into the database
     const hashedPassword = await hash(req.body.password, 10);
     const userFromDb = await insertUser(req.body.email, hashedPassword);
-    console.log("User inserted into DB:", userFromDb);
+    // console.log("User inserted into DB:", userFromDb);
     const user = userFromDb.rows[0];
     return res.status(201).json(createUserObject(user.id, user.email));
   } catch (error) {
-    console.error("Error in postRegistration:", error);
+    //console.error("Error in postRegistration:", error, "in userController.js");
     return next(error);
   }
 };
@@ -38,9 +42,7 @@ const postRegistration = async (req, res, next) => {
 const postLogin = async (req, res, next) => {
   const invalid_credentials_message = "Invalid credentials";
   try {
-    //console.log("Login request received:", req.body);
     const userFromDb = await selectUserByEmail(req.body.email);
-    //console.log("User retrieved from DB:", userFromDb);
     if (userFromDb.rowCount === 0)
       return next(new ApiError(invalid_credentials_message));
 

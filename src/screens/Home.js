@@ -34,7 +34,7 @@ function Home() {
       // fetch only if the identifier matches
       const headers = { headers: { Authorization: user.token } };
       axios
-        .get(url, headers)
+        .get(`${url}/tasks`, headers)
         .then((response) => {
           //console.log(response);
           if (response.data) {

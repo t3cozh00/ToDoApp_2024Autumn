@@ -23,7 +23,7 @@ export default function Authentication({ authenticationMode }) {
       } else {
         await signIn();
         const uniqueIdentifier = generateUniqueIdentifier(user.email);
-        navigate(`/${uniqueIdentifier}`);
+        navigate(`/tasks/${uniqueIdentifier}`);
       }
     } catch (error) {
       const message =

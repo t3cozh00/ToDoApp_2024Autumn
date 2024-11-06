@@ -4,29 +4,46 @@ import { expect } from "chai";
 const base_url = "http://localhost:3001";
 
 describe("GET tasks", () => {
-  before(() => {
-    initializeTestDb();
+  let token;
+
+  before(async () => {
+    await initializeTestDb();
+    const userId = await insertTestUser("test44@foo.com", "test4412345");
+    token = getToken(userId, email);
+    console.log("Database initialized for testing.");
   });
 
   it("should get all tasks", async () => {
-    const response = await fetch(base_url);
+    //const token = getToken("test44@foo.com");
+    const response = await fetch(`${base_url}/tasks`, {
+      headers: {
+        Authorization: token,
+      },
+    });
+
     const data = await response.json();
+    console.log("Response Status:", response.status, "in index.test.js");
+    console.log("Retrieved Data:", data, "in index.test.js");
 
     expect(response.status).to.equal(200);
     expect(data).to.be.an("array").that.is.not.empty;
-    expect(data[0]).to.include.all.keys("id", "description");
+    expect(data[0]).to.include.all.keys(
+      "id",
+      "description",
+      "user_id",
+      "user_email"
+    );
   });
 });
 
 describe("POST task", () => {
-  // before(() => {
-  //   initializeTestDb();
-  // });
-
   const email = "post@foo.com";
   const password = "post123";
-  insertTestUser(email, password);
-  const token = getToken(email);
+  let token;
+  before(async () => {
+    const userId = await insertTestUser(email, password);
+    token = getToken(userId, email);
+  });
 
   it("should post a task", async () => {
     const response = await fetch(`${base_url}/create`, {
@@ -75,14 +92,13 @@ describe("POST task", () => {
 });
 
 describe("DELETE task", () => {
-  // before(() => {
-  //   initializeTestDb();
-  // });
-
   const email = "delete@foo.com";
   const password = "delete123";
-  insertTestUser(email, password);
-  const token = getToken(email);
+  let token;
+  before(async () => {
+    const userId = await insertTestUser(email, password);
+    token = getToken(userId, email);
+  });
 
   it("should delete a task", async () => {
     const response = await fetch(`${base_url}/delete/1`, {
@@ -149,7 +165,10 @@ describe("POST register", () => {
 describe("POST login", () => {
   const email = "login@foo.com";
   const password = "login123";
-  insertTestUser(email, password);
+  let token;
+  before(async () => {
+    await insertTestUser(email, password);
+  });
 
   it("should login with valid credentials", async () => {
     const response = await fetch(`${base_url}/user/login`, {

@@ -14,7 +14,13 @@ create table task (
     user_email varchar(50) 
 );
 
-insert into task (description) values ('My test task');
-insert into task (description) values ('My another test task');
+-- insert test users
+insert into account (email, password) values ('test11@foo.com', 'passwordtest11123');
+insert into account (email, password) values ('test22@foo.com', 'passwordtest22123');
+
+-- insert test tasks for test users
+insert into task (description, user_id, user_email) values ('My test task', 1, 'test11@foo.com');
+insert into task (description, user_id, user_email) values ('My another test task', 2, 'test22@foo.com');
+
 
 

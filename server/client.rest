@@ -1,0 +1,59 @@
+### Login to get a token
+POST http://localhost:3001/user/login
+Content-Type: application/json
+
+{
+  "email": "test5@foo.com",
+  "password": "test512345"
+}
+
+
+### Get tasks
+GET http://localhost:3001/tasks
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTQsImVtYWlsIjoidGVzdDVAZm9vLmNvbSIsImlhdCI6MTczMDgxNzk5MywiZXhwIjoxNzMwODIxNTkzfQ.md_UWAF7dwZwAT-SU0UuVl-NyH6x4a29CAy3PqPcIJA
+
+### Create a task
+POST http://localhost:3001/create
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTQsImVtYWlsIjoidGVzdDVAZm9vLmNvbSIsImlhdCI6MTczMDgxNzk5MywiZXhwIjoxNzMwODIxNTkzfQ.md_UWAF7dwZwAT-SU0UuVl-NyH6x4a29CAy3PqPcIJA
+Content-Type: application/json
+
+{
+  "description": "New task from REST client"
+}
+
+### Delete a task
+DELETE http://localhost:3001/delete/58
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTQsImVtYWlsIjoidGVzdDVAZm9vLmNvbSIsImlhdCI6MTczMDgxNzk5MywiZXhwIjoxNzMwODIxNTkzfQ.md_UWAF7dwZwAT-SU0UuVl-NyH6x4a29CAy3PqPcIJA
+
+### TESTS ###
+
+### Register a new user
+POST http://localhost:3001/user/register
+Content-Type: application/json
+
+{
+  "email": "register@foo.com",
+  "password": "register123"
+}
+
+### Attempt to register with a short password
+POST http://localhost:3001/user/register
+Content-Type: application/json
+
+{
+  "email": "register@foo.com",
+  "password": "short1"
+}
+
+### Login to get a token
+POST http://localhost:3001/user/login
+Content-Type: application/json
+
+{
+  "email": "test33@foo.com",
+  "password": "test3312345"
+}
+
+### Get all tasks (requires token)
+GET http://localhost:3001/tasks
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwiZW1haWwiOiJ0ZXN0MzNAZm9vLmNvbSIsImlhdCI6MTczMDgzMDg4NCwiZXhwIjoxNzMwODM0NDg0fQ.qhIxw3KlE_xDF4shXcdy77uHv5r_jozO8V68ENsLmU4

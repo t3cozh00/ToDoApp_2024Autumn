@@ -8,7 +8,7 @@ import {
 
 const router = Router();
 
-router.get("/", auth, getTasks);
+router.get("/tasks", auth, getTasks);
 
 router.post("/create", auth, postTask);
 
