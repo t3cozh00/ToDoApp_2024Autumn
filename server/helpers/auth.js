@@ -14,12 +14,12 @@ const auth = (req, res, next) => {
     res.status(401).json({ message: authorizationRequired });
   } else {
     try {
-      console.log("Generated token:", token, "in auth.js");
+      //console.log("Generated token:", token, "in auth.js");
 
       const decoded = jwt.verify(token, process.env.JWT_SECRET_KEY);
 
       req.user = { id: decoded.id, email: decoded.email };
-      console.log("Decoded user:", req.user, "in auth.js");
+      //console.log("Decoded user:", req.user, "in auth.js");
       next();
     } catch (err) {
       res.statusMessage = invalidCredentials;

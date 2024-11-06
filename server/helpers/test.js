@@ -17,27 +17,6 @@ const getToken = (id, email) => {
 const initializeTestDb = async () => {
   const sql = fs.readFileSync(path.resolve(__dirname, "../todo.sql"), "utf8");
   pool.query(sql);
-
-  const email = "test44@foo.com";
-  const password = "test4412345";
-  // Use the modified insertTestUser to get the user ID
-  const userId = await insertTestUser(email, password);
-
-  const token = getToken(userId, email);
-  console.log("Generated token:", token);
-
-  // Insert tasks with user_id and user_email fields
-  await pool.query(
-    "INSERT INTO task (description, user_id, user_email) VALUES ($1, $2, $3)",
-    ["My test task from test", userId, email]
-  );
-  await pool.query(
-    "INSERT INTO task (description, user_id, user_email) VALUES ($1, $2, $3)",
-    ["My another test task from test", userId, email]
-  );
-  // Confirm the tasks have been added
-  const tasks = await pool.query("SELECT * FROM task");
-  console.log("Tasks in database:", tasks.rows);
 };
 
 const insertTestUser = async (email, password) => {

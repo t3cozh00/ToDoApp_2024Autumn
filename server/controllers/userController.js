@@ -16,11 +16,7 @@ const createUserObject = (id, email, token = undefined) => {
 
 const postRegistration = async (req, res, next) => {
   try {
-    console.log(
-      "Registration request received:",
-      req.body,
-      "in userController.js"
-    );
+    //console.log("Registration request received:", req.body, "in userController.js");
     if (!req.body.email || !req.body.email.length === 0) {
       throw new ApiError("Invalid email for user", 400);
     }
