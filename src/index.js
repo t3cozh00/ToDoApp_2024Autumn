@@ -28,7 +28,11 @@ const router = createBrowserRouter([
     element: <ProtectedRoute />,
     children: [
       {
-        path: "/:uniqueIdentifier",
+        path: "/",
+        element: <Home />,
+      },
+      {
+        path: "/tasks/:uniqueIdentifier",
         element: <Home />,
       },
     ],
